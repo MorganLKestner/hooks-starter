@@ -1,19 +1,24 @@
-import React, { useState } from 'react';
-import  Toggle from './Toggle'
-// function based components can use hooks
-// class components are different
+import React, { useState, useEffect } from 'react';
+import  Toggle from './Toggle';
+import  { useTitleInput } from './hooks/useTitleInput';
+
+// Notes:
+/*
+useEffect a fucntion runs after every completed render
+function based components can use hooks
+class components are different 
+*/
+
 const App = () => {
 
-  // value, setval is a function
-  const [name, setName] = useState('');
+  const [name, setName] = useTitleInput ('');
 
   return (
     <div className="main-wrapper">
       <h1>Level Up Dishes</h1>
       <Toggle />
       <form onSubmit  = {(e) => {
-        e.preventDefault();
-        formSubmit(name, setName)
+        e.preventDefault();    
       }}
       > 
         <input
@@ -26,11 +31,5 @@ const App = () => {
     </div>
   );
 };
-
-// generic parameters
-const formSubmit = (value, setValue) => {
-  console.log('email sent', value );
-  setValue('');
-}
 
 export default App;

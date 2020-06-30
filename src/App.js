@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef  } from 'react';
+import React, { useState, useEffect, useRef, createContext  } from 'react';
 import  Toggle from './Toggle';
 import  { useTitleInput } from './hooks/useTitleInput';
 
@@ -20,7 +20,15 @@ I.e:
 - useOnScreen
 - useOnClickOutside
 - useOnScroll
+
+
+Create Context
+
+
 */
+
+
+export const UserContext = createContext();
 
 const App = () => {
 
@@ -29,6 +37,11 @@ const App = () => {
   console.log('ref:', ref.current)
 
   return (
+    <UserContext.Provider
+      value={{
+        user: false
+      }}
+    >
     <div className="main-wrapper" ref= {ref}>
       <h1>Level Up Dishes</h1>
       <Toggle />
@@ -44,6 +57,7 @@ const App = () => {
         <button>Submit</button>
       </form>
     </div>
+    </UserContext.Provider>
   );
 };
 

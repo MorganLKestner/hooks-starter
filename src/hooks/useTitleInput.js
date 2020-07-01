@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useDebugValue } from 'react';
 
 function useTitleInput(initialValue) {
   // keeps track of state
@@ -6,6 +6,8 @@ function useTitleInput(initialValue) {
   useEffect(() => {
     document.title = value;
   })
+  useDebugValue(value)
+  // important for library authors
   return [value, setValue]
 }
 

@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useRef  } from 'react';
+import React, { useState, useEffect, useRef, } from 'react';
 import  Toggle from './Toggle';
 import  { useTitleInput } from './hooks/useTitleInput';
-import  Counter  from './Counter'
+
 
 // Notes:
 /*
@@ -28,13 +28,22 @@ const App = () => {
 
   const [name, setName] = useTitleInput ('');
   const ref = useRef();
-  console.log('ref:', ref.current)
+
+  const reverseWord = word => {
+    console.log ('called')
+    return word
+    .split("")
+    .reverse()
+    .join("");
+  }
+
+  const TitleReversed = reverseWord('Level Up Dishes')
 
   return (
     <div className="main-wrapper" ref= {ref}>
-      <h1>Level Up Dishes</h1>
+      <h1>{TitleReversed}</h1>
+      {/* <h1>Level Up Dishes</h1> */}
       <Toggle />
-      <Counter />
       <form onSubmit  = {(e) => {
         e.preventDefault();    
       }}

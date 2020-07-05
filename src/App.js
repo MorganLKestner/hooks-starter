@@ -10,10 +10,12 @@ const App = () => {
   const [dishes, setDishes] = useState([]);
 
   const fetchDishes = async () => {
+    console.log('ran');
     const res = await fetch('https://my-json-server.typicode.com/leveluptuts/fakeapi/dishes');
     const data = await res.json();
     setDishes(data);
   }
+
 
   useEffect( () => {
       fetchDishes();
@@ -35,7 +37,7 @@ const App = () => {
         <button>Submit</button>
       </form>
       {dishes.map(dish => (
-        <article className="dish-card dish-card--withImage">
+        <article  className="dish-card dish-card--withImage">
           <h3>{dish.name}</h3>
           <p>{dish.desc}</p>
           <div className='ingredients'>

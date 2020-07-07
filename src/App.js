@@ -67,4 +67,8 @@ I.e:
 - useOnScreen
 - useOnClickOutside
 - useOnScroll
+Resources:
+awesome react hooks
+colletcion of react hooks
+usehooks.com
 */

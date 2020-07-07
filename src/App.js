@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import useAbortableFetech  from 'use-abortable-fetch';
+import {useSpring, animated } from 'react-spring';
 import  Toggle from './Toggle';
 import  { useTitleInput } from './hooks/useTitleInput';
 
@@ -8,12 +9,14 @@ const App = () => {
   const [name, setName] = useTitleInput('');
   const ref = useRef();
   const {data, loading } = useAbortableFetech('https://my-json-server.typicode.com/leveluptuts/fakeapi/dishes');
-  
-  if (!data) return null;
+
+  const props = useSpring({opacity: 1, from: {opacity: 0} })
 
   return (
     <div className="main-wrapper" ref= {ref}>
-      <h1>Level Up Dishes</h1>
+      <animated.h1 
+        style={props}
+      > Level Up Dishes</animated.h1>
       <Toggle />
       <form onSubmit  = {(e) => {
         e.preventDefault();    
@@ -26,7 +29,7 @@ const App = () => {
         />
         <button>Submit</button>
       </form>
-      {data.map(dish => (
+      {data && data.map(dish => (
         <article  className="dish-card dish-card--withImage">
           <h3>{dish.name}</h3>
           <p>{dish.desc}</p>
